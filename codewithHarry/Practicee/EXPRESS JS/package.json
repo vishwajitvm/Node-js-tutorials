@@ -1,0 +1,19 @@
+{
+  "name": "express-js",
+  "version": "1.0.0",
+  "description": "Building my first app on node js with exoress js",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vishwajitvm"
+  ],
+  "author": "vishwajitvm",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "pug": "^3.0.2"
+  }
+}
