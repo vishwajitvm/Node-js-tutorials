@@ -1,0 +1,14 @@
+{
+  "name": "node-js-with-moongoos",
+  "version": "1.0.0",
+  "description": "Node js with Mongo db basics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vishwajit vm",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^7.1.0"
+  }
+}
