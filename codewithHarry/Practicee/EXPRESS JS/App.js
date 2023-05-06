@@ -22,12 +22,18 @@ app.get('/' , (req, res) => {
 
 app.post('/' , (req, res) => {
     var formdata = req.body ;
-    var movietitle = formdata.movietitle ;
-    var year = formdata.year ;
-    var imdb = formdata.imdb ;
+    var name = formdata.name ;
+    var email = formdata.email ;
+    var message = formdata.message ;
 
-    var outPutToWrite = `The name of movie is ${movietitle} and it was relesed in year ${year} , with overall raiting of ${movietitle} is around ${imdb}!!Hurry go watch`
-    fs.writeFileSync(`${movietitle}_${year}_review.txt` , outPutToWrite) ;
+    var outPutToWrite = `Sophia Williams, a successful entrepreneur and venture capitalist, was going through her emails when she stumbled upon a message from a young entrepreneur named  ${name}. In the message, ${name} introduced himself/herself and asked for Sophia's opinion on his/her latest project. Sophia was impressed by  ${name}'s proactive approach and responded promptly. She offered her feedback, and they began exchanging emails about the project.
+
+    As they continued to communicate, Sophia realized the potential in  ${name}'s project and decided to invest in it. She asked  ${name} to send her more details, and  ${name} replied with a comprehensive message that outlined his/her vision, goals, and strategies. Impressed by  ${name}'s clarity and dedication, Sophia decided to work closely with  ${name} to bring the project to life.
+    
+    Over the next few months, Sophia and  ${name} exchanged numerous emails, discussing the project's progress, challenges, and opportunities. They used the  ${message} section to share their thoughts, ideas, and suggestions. The  ${email} section allowed them to stay connected and communicate quickly, despite their busy schedules.
+    
+    Thanks to their collaboration and hard work, the project was a huge success, and Sophia and  ${name} formed a long-lasting partnership. It all started with a simple message, and it led to a life-changing opportunity for both of them.`
+    fs.writeFileSync(`${name}_review.txt` , outPutToWrite) ;
     const param = {"title" : "YOur message save successfully" }
     res.status(200).render("index.pug" , param)
 })

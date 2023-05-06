@@ -8,26 +8,69 @@
     style 
         include ../static/style.css
 </head>
-<body>
-    <h1> #{title} </h1>
-    p|#{message}
+  body
+    header
+  nav
+    ul
+      li
+        a(href='#about') About
+      li
+        a(href='#services') Services
+      li
+        a(href='#portfolio') Portfolio
+      li
+        a(href='#testimonials') Testimonials
+      li
+        a(href='#contact') Contact
 
-<ul>
-    <li>element 1</li>
-    <li>element 2</li>
-    <li>element 3</li>
-    <li>element 4</li>
-</ul>
-
- form(action='/', method='POST')
-    p
-      | Movie title: 
-      input(type='text', name='movietitle', value='')
-      br/br/|          year: 
-      input(type='text', name='year', value='')
-      br/br/|          imdb: 
-      input(type='text', name='imdb', value='')
-    input(type='submit', value='Submit')
-
-</body>
-</html>
+    main
+      section#about
+        h2 About Us
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+      section#services
+        h2 Our Services
+        .card-container
+          .card
+            img(src='https://via.placeholder.com/200' alt='Service 1')
+            h3 Service 1
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+          .card
+            img(src='https://via.placeholder.com/200' alt='Service 2')
+            h3 Service 2
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+          .card
+            img(src='https://via.placeholder.com/200' alt='Service 3')
+            h3 Service 3
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+      section#portfolio
+        h2 Our Portfolio
+        .image-grid
+          img(src='https://via.placeholder.com/400' alt='Project 1')
+          img(src='https://via.placeholder.com/400' alt='Project 2')
+          img(src='https://via.placeholder.com/400' alt='Project 3')
+          img(src='https://via.placeholder.com/400' alt='Project 4')
+          img(src='https://via.placeholder.com/400' alt='Project 5')
+          img(src='https://via.placeholder.com/400' alt='Project 6')
+      section#testimonials
+        h2 Testimonials
+        .testimonial-container
+          .testimonial
+            img(src='https://via.placeholder.com/100' alt='Testimonial 1')
+            p "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."
+            h4 John Doe
+          .testimonial
+            img(src='https://via.placeholder.com/100' alt='Testimonial 2')
+            p "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."
+            h4 Jane Doe
+      section#contact
+        h2 Contact Us
+        form(action='/' method='post')
+          label(for='name') Name:
+          input(type='text' id='name' name='name' required)
+          label(for='email') Email:
+          input(type='email' id='email' name='email' required)
+          label(for='message') Message:
+          textarea(id='message' name='message' rows='5' required)
+          button(type='submit') Send Message
+    footer
+      p Copyright © 2023
