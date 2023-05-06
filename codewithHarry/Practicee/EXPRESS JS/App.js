@@ -17,7 +17,7 @@ app.set('views' , path.join(__dirname , 'views')) ;
 app.get('/' , (req, res) => {
     const message = "Vishwajit vm Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit molestiae ut animi?" ;
     const param = {"title" : "Vishwajit vm website" , "message" : message}
-    res.status(200).render("index.pug" , param)
+    res.status(200).render("home.pug" , param)
 })
 
 app.post('/' , (req, res) => {
