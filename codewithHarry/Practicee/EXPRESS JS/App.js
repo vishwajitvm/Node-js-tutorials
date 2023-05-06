@@ -1,8 +1,27 @@
 const express = require('express')
 const fs = require('fs') ;
 const path = require('path')
+const bodyparser = require('body-parser')
 const app = express() ;
 const port = 80 ;
+
+// getting-started.js
+const mongoose = require('mongoose');
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/vishwajitvm');
+  console.log("Server Connected Successfully") ;
+}
+
+//DEFINE MONGOOS SCHEMA
+const contactSchema = new mongoose.Schema({
+    name: String ,
+    email: String ,
+    message: String ,
+  })
+  //create a model to save data in contact collection
+  const contact = mongoose.model('contact', contactSchema);
 
 //EXPRESS SPECIFIC CONMFIG
 app.use('/static', express.static('static')) //for serving static file
@@ -21,22 +40,34 @@ app.get('/' , (req, res) => {
 })
 
 app.post('/' , (req, res) => {
-    var formdata = req.body ;
-    var name = formdata.name ;
-    var email = formdata.email ;
-    var message = formdata.message ;
-
-    var outPutToWrite = `Sophia Williams, a successful entrepreneur and venture capitalist, was going through her emails when she stumbled upon a message from a young entrepreneur named  ${name}. In the message, ${name} introduced himself/herself and asked for Sophia's opinion on his/her latest project. Sophia was impressed by  ${name}'s proactive approach and responded promptly. She offered her feedback, and they began exchanging emails about the project.
-
-    As they continued to communicate, Sophia realized the potential in  ${name}'s project and decided to invest in it. She asked  ${name} to send her more details, and  ${name} replied with a comprehensive message that outlined his/her vision, goals, and strategies. Impressed by  ${name}'s clarity and dedication, Sophia decided to work closely with  ${name} to bring the project to life.
-    
-    Over the next few months, Sophia and  ${name} exchanged numerous emails, discussing the project's progress, challenges, and opportunities. They used the  ${message} section to share their thoughts, ideas, and suggestions. The  ${email} section allowed them to stay connected and communicate quickly, despite their busy schedules.
-    
-    Thanks to their collaboration and hard work, the project was a huge success, and Sophia and  ${name} formed a long-lasting partnership. It all started with a simple message, and it led to a life-changing opportunity for both of them.`
-    fs.writeFileSync(`${name}_review.txt` , outPutToWrite) ;
-    const param = {"title" : "YOur message save successfully" }
-    res.status(200).render("index.pug" , param)
+    const myData = new contact(req.body) ;
+    myData.save().then(() => {
+        res.send("YOur Contact Details Has Been Saved Successfully")
+    }).catch(() => {
+        res.status(400).send("Item Was Not Saved To Database!!")
+    }) ;
+    // res.render("home.pug")
 })
+
+
+//Gerate TXT FILE on form submit
+// app.post('/' , (req, res) => {
+//     var formdata = req.body ;
+//     var name = formdata.name ;
+//     var email = formdata.email ;
+//     var message = formdata.message ;
+
+//     var outPutToWrite = `Sophia Williams, a successful entrepreneur and venture capitalist, was going through her emails when she stumbled upon a message from a young entrepreneur named  ${name}. In the message, ${name} introduced himself/herself and asked for Sophia's opinion on his/her latest project. Sophia was impressed by  ${name}'s proactive approach and responded promptly. She offered her feedback, and they began exchanging emails about the project.
+
+//     As they continued to communicate, Sophia realized the potential in  ${name}'s project and decided to invest in it. She asked  ${name} to send her more details, and  ${name} replied with a comprehensive message that outlined his/her vision, goals, and strategies. Impressed by  ${name}'s clarity and dedication, Sophia decided to work closely with  ${name} to bring the project to life.
+    
+//     Over the next few months, Sophia and  ${name} exchanged numerous emails, discussing the project's progress, challenges, and opportunities. They used the  ${message} section to share their thoughts, ideas, and suggestions. The  ${email} section allowed them to stay connected and communicate quickly, despite their busy schedules.
+    
+//     Thanks to their collaboration and hard work, the project was a huge success, and Sophia and  ${name} formed a long-lasting partnership. It all started with a simple message, and it led to a life-changing opportunity for both of them.`
+//     fs.writeFileSync(`${name}_review.txt` , outPutToWrite) ;
+//     const param = {"title" : "YOur message save successfully" }
+//     res.status(200).render("index.pug" , param)
+// })
 
 
 app.get('/demo', (req, res) => {res.status(200).render('demo', { title: 'Hey vishwajit', message: 'Hello there!!!demo' })})
